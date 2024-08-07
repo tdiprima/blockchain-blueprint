@@ -15,7 +15,7 @@ class Block {
     this.data = data;
     this.previousHash = previousHash;
     this.hash = this.calculateHash();
-    this.nonce = 0;
+    this.nonce = 0; // "number only used once" is used to solve the proof of work
   }
 
   /**
@@ -24,25 +24,27 @@ class Block {
    */
   calculateHash() {
     return crypto
-      .createHash("sha256")
+      .createHash("sha256") // Create a new hash object.
       .update(
         this.index +
           this.previousHash +
           this.timestamp +
           JSON.stringify(this.data) +
           this.nonce
-      )
-      .digest("hex");
+      ) // Add data to the hash object that is being created.
+      .digest("hex"); // Complete the hash computation and return the resulting hash value.
   }
 
   /**
-   * Mines the block by finding a hash that meets the difficulty requirement.
+   * Finds a valid hash that meets the specified difficulty requirement.
    * @param {number} difficulty - The number of leading zeros required in the hash.
    */
   mineBlock(difficulty) {
+    // Check if the hash of the block starts with a certain number of zeros
     while (
       this.hash.substring(0, difficulty) !== Array(difficulty + 1).join("0")
     ) {
+      // If not, the nonce is incremented, and the hash is recalculated until a valid hash is found
       this.nonce++;
       this.hash = this.calculateHash();
     }

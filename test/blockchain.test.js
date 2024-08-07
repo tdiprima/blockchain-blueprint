@@ -6,6 +6,7 @@ describe("Block", () => {
     const block = new Block(1, Date.now(), { amount: 4 }, "0");
     const hash = block.calculateHash();
     expect(hash).toBe(block.hash);
+    // expect(calculatedHash).not.toBe(initialHash);
   });
 
   test("should mine a block and find a hash that matches difficulty", () => {
