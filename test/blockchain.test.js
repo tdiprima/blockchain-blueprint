@@ -5,8 +5,8 @@ describe("Block", () => {
   test("should correctly calculate hash", () => {
     const block = new Block(1, Date.now(), { amount: 4 }, "0");
     const hash = block.calculateHash();
-    // The block.hash was already calculated in the constructor. If anything changes between when the block was 
-    // initialized and when calculateHash is called in the test (such as Date.now()), the hash values may not match.
+    // The block.hash was already calculated in the constructor. If any property changes between when the block was 
+    // initialized and when calculateHash is called in the test (such as timestamp or nonce), the hash values may not match.
     expect(hash).toBe(block.hash);
     // expect(calculatedHash).not.toBe(initialHash);
   });

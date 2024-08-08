@@ -3,7 +3,7 @@ import { Block, Blockchain } from "../src/blockchain.js";
 
 describe("Block", () => {
     test("calculateHash", () => {
-        const block = new Block(1, Date.now(), "Test block", blockchain.chain[0].hash);
+        const block = new Block(1, Date.now(), "Test block", "0");
         const hash = block.calculateHash();
         // Hash should be 64 characters
         // And it should be the same as the hash in the block object
@@ -11,7 +11,7 @@ describe("Block", () => {
     });
 
     test("mineBlock", () => {
-        const block = new Block(1, Date.now(), "Test block", blockchain.chain[0].hash);
+        const block = new Block(1, Date.now(), "Test block", "0");
         block.mineBlock(2);
         expect(block.hash.substring(0, 2)).toBe("00");
     });
