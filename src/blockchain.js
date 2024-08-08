@@ -14,8 +14,8 @@ class Block {
     this.timestamp = timestamp;
     this.data = data;
     this.previousHash = previousHash;
-    this.hash = this.calculateHash();
-    this.nonce = 0; // "number only used once" is used to solve the proof of work
+    this.nonce = 0; // Initialize nonce first
+    this.hash = this.calculateHash(); // Calculate hash after nonce initialization
   }
 
   /**

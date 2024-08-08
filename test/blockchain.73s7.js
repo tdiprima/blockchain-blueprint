@@ -2,8 +2,11 @@ import { describe, expect, test } from "bun:test";
 import { Block, Blockchain } from "../src/blockchain.js";
 
 describe("Block", () => {
+    const blockchain = new Blockchain();
+    // blockchain.addBlock(new Block(0, Date.now(), "Genesis Block", "0")); // Already done in the constructor
+
     test("calculateHash", () => {
-        const block = new Block(1, Date.now(), "Test block", "0");
+        const block = new Block(1, Date.now(), "Test block", blockchain.chain[0].hash);
         const hash = block.calculateHash();
         // Hash should be 64 characters
         // And it should be the same as the hash in the block object
@@ -11,11 +14,12 @@ describe("Block", () => {
     });
 
     test("mineBlock", () => {
-        const block = new Block(1, Date.now(), "Test block", "0");
+        const block = new Block(1, Date.now(), "Test block", blockchain.chain[0].hash);
         block.mineBlock(2);
         expect(block.hash.substring(0, 2)).toBe("00");
     });
 });
+
 
 describe("Blockchain", () => {
     test("addBlock", () => {
