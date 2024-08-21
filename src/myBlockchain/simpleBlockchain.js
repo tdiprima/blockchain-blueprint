@@ -1,3 +1,4 @@
+// A simple implementation of a blockchain, including the Block and Blockchain classes.
 const crypto = require("crypto");
 
 class Block {
