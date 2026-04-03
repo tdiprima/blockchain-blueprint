@@ -8,7 +8,7 @@ describe("cryptoUtils", () => {
       diagnosis: "Common Cold",
       medication: "Aspirin",
     };
-    const secretKey = "ThisIsAVerySecretKey";
+    const secretKey = "";
     const encryptedData = await encryptData(JSON.stringify(data), secretKey);
     const decryptedData = await decryptData(encryptedData, secretKey);
     expect(JSON.parse(decryptedData)).toEqual(data);
